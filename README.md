@@ -37,10 +37,6 @@ s3Transload.urlToS3(getUrl, params, function(error, data) {
 });
 ```
 
-## Note
-
-[How To setup AWS credential](https://aws.amazon.com/sdk-for-node-js/)
-
 ## Under the hood
 
 * It use [request](https://github.com/request/request) to create stream, and pipe it into s3 upload.

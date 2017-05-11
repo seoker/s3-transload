@@ -18,7 +18,7 @@
     "upload",
     "file"
   ],
-  "author": "Patrick Perey",
+  "author": "Seoker Wang",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/seoker/s3-transload/issues"
