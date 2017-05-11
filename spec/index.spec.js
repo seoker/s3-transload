@@ -1,4 +1,4 @@
-const s3Transload = require('../index')
+const s3Transload = require('../index')()
 const nock = require('nock')
 const fs = require('fs')
 
