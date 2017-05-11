@@ -2,13 +2,13 @@
   "name": "s3-transload",
   "version": "0.0.4",
   "description": "GET file from link and upload to AWS S3",
-  "main": "./index.js",
+  "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:the4dpatrick/s3-transload.git"
+    "url": "git@github.com:seoker/s3-transload.git"
   },
   "keywords": [
     "transload",
@@ -21,15 +21,17 @@
   "author": "Patrick Perey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/the4dpatrick/s3-transload/issues"
+    "url": "https://github.com/seoker/s3-transload/issues"
   },
-  "homepage": "https://github.com/the4dpatrick/s3-transload",
+  "homepage": "https://github.com/seoker/s3-transload",
   "dependencies": {
-    "aws-sdk": "^2.49.0",
     "request": "~2.74.0"
   },
   "devDependencies": {
     "jasmine": "^2.6.0",
     "nock": "^9.0.13"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.0.0"
   }
 }

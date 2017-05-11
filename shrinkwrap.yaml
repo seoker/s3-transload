@@ -1,5 +1,4 @@
 dependencies:
-  aws-sdk@^2.49.0: 2.49.0
   jasmine@^2.6.0: 2.6.0
   nock@^9.0.13: 9.0.13
   request@~2.74.0: 2.74.0
@@ -14,22 +13,9 @@ packages:
     dependencies:
       lodash: 4.17.4
     resolution: 4990200f18ea5b837c2cc4f8c031a6985c385611
-  /aws-sdk/2.49.0:
-    dependencies:
-      buffer: 5.0.6
-      crypto-browserify: 1.0.9
-      jmespath: 0.15.0
-      querystring: 0.2.0
-      sax: 1.2.1
-      url: 0.10.3
-      uuid: 3.0.1
-      xml2js: 0.4.17
-      xmlbuilder: 4.2.1
-    resolution: e340451b38b9772b2320da64a2cc272410667c69
   /aws-sign2/0.6.0: 14342dd38dbcc94d0e5b87d763cd63612c0e794f
   /aws4/1.6.0: 83ef5ca860b2b32e4a0deedee8c771b9db57471e
   /balanced-match/0.4.2: cb3f3e3c732dc0f01ee70b403f302e61d7709838
-  /base64-js/1.2.0: a39992d723584811982be5e290bb6a53d86700f1
   /bcrypt-pbkdf/1.0.1:
     dependencies:
       tweetnacl: 0.14.5
@@ -47,11 +33,6 @@ packages:
       balanced-match: 0.4.2
       concat-map: 0.0.1
     resolution: 3effc3c50e000531fb720eaff80f0ae8ef23cf59
-  /buffer/5.0.6:
-    dependencies:
-      base64-js: 1.2.0
-      ieee754: 1.1.8
-    resolution: 2ea669f7eec0b6eda05b08f8b5ff661b28573588
   /caseless/0.11.0: 715b96ea9841593cc33067923f5ec60ebda4f7d7
   /chai/3.5.0:
     dependencies:
@@ -81,7 +62,6 @@ packages:
     dependencies:
       boom: 2.10.1
     resolution: 3bdfecdc608147c1c67202fa291e7dca59eaa3b8
-  /crypto-browserify/1.0.9: cc5449685dfb85eb11c9828acc7cb87ab5bbfcc0
   /dashdash/1.14.1:
     dependencies:
       assert-plus: 1.0.0
@@ -156,7 +136,6 @@ packages:
       jsprim: 1.4.0
       sshpk: 1.13.0
     resolution: df72e267066cd0ac67fb76adf8e134a8fbcf91bf
-  /ieee754/1.1.8: be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4
   /inflight/1.0.6:
     dependencies:
       once: 1.4.0
@@ -181,7 +160,6 @@ packages:
       glob: 7.1.1
       jasmine-core: 2.6.1
     resolution: 6b22e70883e8e589d456346153b4d206ddbe217f
-  /jmespath/0.15.0: a3f222a9aae9f966f5d27c796510e28091764217
   /jodid25519/1.0.2:
     dependencies:
       jsbn: 0.1.1
@@ -238,11 +216,9 @@ packages:
   /pinkie/2.0.4: 72556b80cfa0d48a974e80e77248e80ed4f7f870
   /process-nextick-args/1.0.7: 150e20b756590ad3f91093f25a4f2ad8bff30ba3
   /propagate/0.4.0: f3fcca0a6fe06736a7ba572966069617c130b481
-  /punycode/1.3.2: 9653a036fb7c1ee42342f2325cceefea3926c48d
   /punycode/1.4.1: c0d5a63b2718800ad8e1eb0fa5269c84dd41845e
   /qs/6.2.3: 1cfcb25c10a9b2b483053ff39f5dfc9233908cfe
   /qs/6.4.0: 13e26d28ad6b0ffaa91312cd3bf708ed351e7233
-  /querystring/0.2.0: b209849203bb25df820da756e747005878521620
   /readable-stream/2.0.6:
     dependencies:
       core-util-is: 1.0.2
@@ -276,8 +252,6 @@ packages:
       tough-cookie: 2.3.2
       tunnel-agent: 0.4.3
     resolution: 7693ca768bbb0ea5c8ce08c084a45efa05b892ab
-  /sax/1.2.1: 7b8e656190b228e81a66aea748480d828cd2d37a
-  /sax/1.2.2: fd8631a23bc7826bef5d871bdb87378c95647828
   /sntp/1.0.9:
     dependencies:
       hoek: 2.16.3
@@ -309,27 +283,12 @@ packages:
   /tweetnacl/0.14.5: 5ae68177f192d4456269d108afa93ff8743f4f64
   /type-detect/0.1.1: 0ba5ec2a885640e470ea4e8505971900dac58822
   /type-detect/1.0.0: 762217cc06db258ec48908a1298e8b95121e8ea2
-  /url/0.10.3:
-    dependencies:
-      punycode: 1.3.2
-      querystring: 0.2.0
-    resolution: 021e4d9c7705f21bbf37d03ceb58767402774c64
   /util-deprecate/1.0.2: 450d4dc9fa70de732762fbd2d4a28981419a0ccf
-  /uuid/3.0.1: 6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1
   /verror/1.3.6:
     dependencies:
       extsprintf: 1.0.2
     resolution: cff5df12946d297d2baaefaa2689e25be01c005c
   /wrappy/1.0.2: b5243d8f3ec1aa35f1364605bc0d1036e30ab69f
-  /xml2js/0.4.17:
-    dependencies:
-      sax: 1.2.2
-      xmlbuilder: 4.2.1
-    resolution: 17be93eaae3f3b779359c795b419705a8817e868
-  /xmlbuilder/4.2.1:
-    dependencies:
-      lodash: 4.17.4
-    resolution: aa58a3041a066f90eaa16c2f5389ff19f3f461a5
   /xtend/4.0.1: a5c6d532be656e23db820efb943a1f04998d63af
 registry: 'https://registry.npmjs.org/'
 version: 2

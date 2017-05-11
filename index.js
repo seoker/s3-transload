@@ -1,6 +1,5 @@
-var AWS = require('aws-sdk');
 var request = require('request');
-const stream = require('stream');
+var stream = require('stream');
 
 function uploadToS3(s3, params, cb) {
   var pass = new stream.PassThrough();
@@ -17,13 +16,12 @@ function uploadToS3(s3, params, cb) {
       }
     });
   return pass;
-}
-;
+};
 
 module.exports = function(s3) {
-  s3 = s3 || new AWS.S3({
-    apiVersion: '2006-03-01'
-  });
+  if (!s3 || typeof s3.upload !== 'function') {
+    throw new Error('please specify a valid s3 object.');
+  }
 
   return {
     urlToS3: function(url, params, callback) {
@@ -32,7 +30,7 @@ module.exports = function(s3) {
       req.pause();
       req.on('response', function(resp) {
         if (resp.statusCode == 200) {
-          const headers = resp.headers;
+          var headers = resp.headers;
 
           if (headers['content-type']) {
             params.ContentType = headers['content-type'];
