@@ -13,7 +13,7 @@ function uploadToS3(s3, params, cb) {
       if (data && data.Location) {
         cb(null, data.Location); // data.Location is the uploaded location
       } else {
-        cb(new Error("data.Location not found!"), data);
+        cb(new Error('data.Location not found!'), data);
       }
     });
   return pass;
@@ -27,17 +27,21 @@ module.exports = function(s3) {
 
   return {
     urlToS3: function(url, params, callback) {
+      params = Object.assign({}, params);
       var req = request.get(url);
       req.pause();
       req.on('response', function(resp) {
         if (resp.statusCode == 200) {
-          if (resp.headers['content-type']) {
-            params.ContentType = resp.headers['content-type'];
+          const headers = resp.headers;
+
+          if (headers['content-type']) {
+            params.ContentType = headers['content-type'];
           }
-          if (resp.headers['content-encoding']) {
-            params.ContentEncoding = resp.headers['content-encoding'];
+          
+          if (headers['content-encoding']) {
+            params.ContentEncoding = headers['content-encoding'];
           }
-            
+
           req.pipe(uploadToS3(s3, params, callback));
           req.resume();
         } else {
