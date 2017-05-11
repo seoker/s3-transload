@@ -16,7 +16,7 @@ fdescribe('s3-transload', () => {
   })
 
   describe('when able to request image', () => {
-    let imageScope, s3Scope
+    let imageScope, s3Scope, s3Params
     beforeEach(() => {
       imageScope = nock(IMAGE_BASE_URL)
         .get(IMAGE_URL_PATH)
@@ -25,19 +25,21 @@ fdescribe('s3-transload', () => {
         })
 
       s3Scope = nock(S3_BASE_URL)
-                  .put(S3_URL_PATH)
-                  .reply(200)
+        .put(S3_URL_PATH)
+        .reply(200)
+
+      s3Params = { Bucket: BUCKET_NAME, Key: ITEM_KEY }
     })
 
     it('successfully requested an image without error', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(imageScope.isDone()).toBe(true)
         done()
       })
     })
 
     it('image is uploaded s3', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(s3Scope.isDone()).toBe(true)
         done()
       })
@@ -45,19 +47,21 @@ fdescribe('s3-transload', () => {
   })
 
   describe('when not able to request image', () => {
-    let imageScope, s3Scope
+    let imageScope, s3Scope, s3Params
     beforeEach(() => {
       imageScope = nock(IMAGE_BASE_URL)
         .get(IMAGE_URL_PATH)
         .reply(400)
 
       s3Scope = nock(S3_BASE_URL)
-                  .put(S3_URL_PATH)
-                  .reply(200)
+        .put(S3_URL_PATH)
+        .reply(200)
+
+      s3Params = { Bucket: BUCKET_NAME, Key: ITEM_KEY }
     })
 
     it('returns error after image request', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(err).toEqual(new Error('request item did not respond with HTTP 200'))
         expect(imageScope.isDone()).toBe(true)
         done()
@@ -65,7 +69,7 @@ fdescribe('s3-transload', () => {
     })
 
     it('image was not uploaded to s3', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(s3Scope.isDone()).toBe(false)
         done()
       })
@@ -73,7 +77,7 @@ fdescribe('s3-transload', () => {
   })
 
   describe('when able to upload image', () => {
-    let imageScope, s3Scope
+    let imageScope, s3Scope, s3Params
     beforeEach(() => {
       imageScope = nock(IMAGE_BASE_URL)
         .get(IMAGE_URL_PATH)
@@ -82,19 +86,21 @@ fdescribe('s3-transload', () => {
         })
 
       s3Scope = nock(S3_BASE_URL)
-                  .put(S3_URL_PATH)
-                  .reply(200)
+        .put(S3_URL_PATH)
+        .reply(200)
+
+      s3Params = { Bucket: BUCKET_NAME, Key: ITEM_KEY }
     })
 
     it('successfully requested an image without error', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(imageScope.isDone()).toBe(true)
         done()
       })
     })
 
     it('image was uploaded to s3', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         expect(s3Scope.isDone()).toBe(true)
         done()
       })
@@ -102,7 +108,7 @@ fdescribe('s3-transload', () => {
   })
 
   describe('when not able to upload image', () => {
-    let imageScope, s3Scope
+    let imageScope, s3Scope, s3Params
     beforeEach(() => {
       imageScope = nock(IMAGE_BASE_URL)
         .get(IMAGE_URL_PATH)
@@ -111,13 +117,15 @@ fdescribe('s3-transload', () => {
         })
 
       s3Scope = nock(S3_BASE_URL)
-                  .put(S3_URL_PATH)
-                  .reply(400)
+        .put(S3_URL_PATH)
+        .reply(400)
+
+      s3Params = { Bucket: BUCKET_NAME, Key: ITEM_KEY }
     })
 
     // Combined specs here because of test flakiness if separated
     it('successfully requested an image without error & no image was uploaded to s3', (done) => {
-      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, BUCKET_NAME, ITEM_KEY, (err, data) => {
+      s3Transload.urlToS3(`${IMAGE_BASE_URL}${IMAGE_URL_PATH}`, s3Params, (err, data) => {
         // successfully requested an image without error
         expect(imageScope.isDone()).toBe(true)
 

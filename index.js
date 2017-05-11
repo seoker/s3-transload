@@ -2,15 +2,10 @@ var AWS = require('aws-sdk');
 var request = require('request');
 const stream = require('stream');
 
-function uploadToS3(s3, bucketName, itemKey, cb) {
+function uploadToS3(s3, params, cb) {
   var pass = new stream.PassThrough();
 
-  var params = {
-    Body: pass,
-    Bucket: bucketName,
-    Key: itemKey
-  };
-  s3.upload(params)
+  s3.upload(Object.assign({}, params, { Body: pass }))
     .send(function(err, data) {
       if (err) {
         cb(err, data);
@@ -31,12 +26,12 @@ module.exports = function(s3) {
   });
 
   return {
-    urlToS3: function(url, bucketName, itemKey, callback) {
+    urlToS3: function(url, params, callback) {
       var req = request.get(url);
       req.pause();
       req.on('response', function(resp) {
         if (resp.statusCode == 200) {
-          req.pipe(uploadToS3(s3, bucketName, itemKey, callback));
+          req.pipe(uploadToS3(s3, params, callback));
           req.resume();
         } else {
           callback(new Error('request item did not respond with HTTP 200'));
