@@ -31,6 +31,13 @@ module.exports = function(s3) {
       req.pause();
       req.on('response', function(resp) {
         if (resp.statusCode == 200) {
+          if (resp.headers['content-type']) {
+            params.ContentType = resp.headers['content-type'];
+          }
+          if (resp.headers['content-encoding']) {
+            params.ContentEncoding = resp.headers['content-encoding'];
+          }
+            
           req.pipe(uploadToS3(s3, params, callback));
           req.resume();
         } else {
